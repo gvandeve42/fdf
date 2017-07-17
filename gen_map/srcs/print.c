@@ -9,7 +9,7 @@ void	print_map(int **map, int *args)
 	j = 0;
 	while (i < args[0])
 		{
-			while (j < args[1])
+			while (j < args[0])
 				{
 					ft_printf("%d ", map[i][j]);
 					j++;
