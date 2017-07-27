@@ -18,7 +18,7 @@ static int		is_valid_number(int nbr)
 	int	i;
 
 	i = 1;
-	while (i < 8)
+	while (i < 64)
 	{
 		if (nbr == (power(2, i) + 1))
 			return (1);
@@ -31,14 +31,15 @@ static int		get_args(char **av, int *args)
 {
 	args[0] = ft_atoi(av[1]);
 	args[1] = ft_atoi(av[2]);
+	args[2] = ft_atoi(av[3]);
 	if (!is_valid_number(args[0]))
 	{
-		ft_putstr_fd("error: first argument must be (2^n + 1), with 0<n<8\n", 2);
+		ft_putstr_fd("error: first argument must be (2^n + 1), with 0<n<64\n", 2);
 		return (0);
 	}
-	if (args[1] < 2)
+	if (args[1] < 2 || args[2] < 2)
 	{
-		ft_putstr_fd("error: the random number must be at least 2\n", 2);
+		ft_putstr_fd("error: the random numbers must be at least 2\n", 2);
 		return (0);
 	}
 	return (1);
@@ -47,7 +48,8 @@ static int		get_args(char **av, int *args)
 static int		is_good(char **av)
 {
 	if (ft_is_number(av[1]) &&
-		ft_is_number(av[2]))
+		ft_is_number(av[2]) &&
+		ft_is_number(av[3]))
 		return (1);
 	else
 		return (0);
@@ -60,7 +62,7 @@ int				main(int ac, char **av)
 
 	map = 0;
 	srand(time(NULL));
-	if (ac == 3)
+	if (ac == 4)
 		{
 			if (is_good(av))
 				{
@@ -76,7 +78,7 @@ int				main(int ac, char **av)
 				ft_putstr_fd("error: Bad args...\n", 2);
 		}
 	else
-		ft_putstr_fd("usage: gen_map len rdm_variety\n", 2);
+		ft_putstr_fd("usage: gen_map len rdm_start rdm_variety\n", 2);
 	return (1);
 }
 

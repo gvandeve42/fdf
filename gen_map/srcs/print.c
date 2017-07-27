@@ -18,4 +18,5 @@ void	print_map(int **map, int *args)
 			j = 0;
 			i++;
 		}
+	//ft_printf("\n");
 }
